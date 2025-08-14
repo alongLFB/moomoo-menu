@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { MagnifyingGlassIcon, FunnelIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,30 +17,45 @@ export function MenuFilters({ onFiltersChange }: MenuFiltersProps) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPriceRanges, setSelectedPriceRanges] = useState<string[]>([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
   const t = useTranslations();
 
-  // Fetch categories
+  // Fetch categories - only once
   useEffect(() => {
+    let isMounted = true;
+    
     fetch("/api/v1/categories")
       .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setCategories(data.data);
+      .then((data: unknown) => {
+        const result = data as { success: boolean; data: any[] };
+        if (isMounted && result.success) {
+          setCategories(result.data);
         }
       })
-      .catch(console.error);
+      .catch((error) => {
+        if (isMounted) {
+          console.error("Error fetching categories:", error);
+        }
+      });
+      
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  // Notify parent of filter changes
-  useEffect(() => {
+  // Notify parent of filter changes - use useCallback to prevent unnecessary re-renders
+  const notifyFiltersChange = useCallback(() => {
     onFiltersChange?.({
       search,
       category: selectedCategory,
       priceRanges: selectedPriceRanges,
     });
   }, [search, selectedCategory, selectedPriceRanges, onFiltersChange]);
+
+  useEffect(() => {
+    notifyFiltersChange();
+  }, [notifyFiltersChange]);
 
   const priceRanges = [
     { value: "under50", label: t("menu.under50"), min: 0, max: 50 },
@@ -86,8 +101,8 @@ export function MenuFilters({ onFiltersChange }: MenuFiltersProps) {
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           animate={{
-            height: isExpanded || window.innerWidth >= 1024 ? "auto" : 0,
-            opacity: isExpanded || window.innerWidth >= 1024 ? 1 : 0,
+            height: isExpanded || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? "auto" : 0,
+            opacity: isExpanded || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 1 : 0,
           }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}

@@ -4,20 +4,30 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { DishCard } from "./dish-card";
-import { MenuFilters } from "./menu-filters";
 import type { Dish } from "@/lib/db/schema";
 
-export function DishGrid() {
+interface DishGridProps {
+  filters?: {
+    search: string;
+    category: string;
+    priceRanges: string[];
+  };
+}
+
+export function DishGrid({ filters: externalFilters }: DishGridProps) {
   const [dishes, setDishes] = useState<Dish[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState({
+  const [internalFilters, setInternalFilters] = useState({
     search: "",
     category: "all",
     priceRanges: [] as string[],
   });
   const t = useTranslations();
   const searchParams = useSearchParams();
+
+  // Use external filters if provided, otherwise use internal filters
+  const filters = externalFilters || internalFilters;
 
   // Fetch dishes based on filters
   useEffect(() => {
@@ -63,7 +73,7 @@ export function DishGrid() {
         }
 
         const response = await fetch(`/api/v1/dishes?${params.toString()}`);
-        const data = await response.json();
+        const data = await response.json() as { success: boolean; data: Dish[]; error?: string };
 
         if (data.success) {
           setDishes(data.data);
@@ -81,19 +91,21 @@ export function DishGrid() {
     fetchDishes();
   }, [filters]);
 
-  // Handle URL-based filters (from category pages, etc.)
+  // Handle URL-based filters (from category pages, etc.) - only if using internal filters
   useEffect(() => {
+    if (externalFilters) return; // Don't override external filters
+    
     const category = searchParams.get("category");
     const search = searchParams.get("q");
 
     if (category || search) {
-      setFilters((prev) => ({
+      setInternalFilters((prev) => ({
         ...prev,
         category: category || "all",
         search: search || "",
       }));
     }
-  }, [searchParams]);
+  }, [searchParams, externalFilters]);
 
   if (loading) {
     return <DishGridSkeleton />;
@@ -127,16 +139,6 @@ export function DishGrid() {
 
   return (
     <div className="space-y-6">
-      {/* Mobile Filters */}
-      <div className="lg:hidden">
-        <MenuFilters onFiltersChange={setFilters} />
-      </div>
-
-      {/* Desktop Filters */}
-      <div className="hidden lg:block">
-        <MenuFilters onFiltersChange={setFilters} />
-      </div>
-
       {/* Results */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {dishes.map((dish) => (

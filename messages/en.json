@@ -69,11 +69,11 @@
     "social": "Social Media"
   },
   "categories": {
-    "appetizers": "Appetizers",
+    "cold-dishes": "Cold Dishes",
+    "hot-dishes": "Hot Dishes", 
+    "noodles": "Noodles & Pasta",
     "soups": "Soups",
-    "mains": "Main Courses",
-    "vegetarian": "Vegetarian",
-    "desserts": "Desserts",
-    "beverages": "Beverages"
+    "staples": "Staples",
+    "snacks": "Snacks"
   }
 }

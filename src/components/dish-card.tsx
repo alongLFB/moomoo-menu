@@ -43,8 +43,8 @@ export function DishCard({ dish }: DishCardProps) {
         {/* Image */}
         <div className="relative aspect-square overflow-hidden">
           <Image
-            src={dish.imageThumbnail}
-            alt={name}
+            src={dish.imageThumbnail || 'https://via.placeholder.com/400x400/f3f4f6/9ca3af?text=Dish+Image'}
+            alt={name || dish.nameEn || dish.nameZh || "Dish image"}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

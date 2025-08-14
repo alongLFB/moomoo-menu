@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { NavBar } from "@/components/navbar";
-import { MenuFilters } from "@/components/menu-filters";
-import { DishGrid } from "@/components/dish-grid";
 import { Footer } from "@/components/footer";
+import { MenuPageContent } from "@/components/menu-page-content";
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
 
   return {
@@ -19,10 +19,11 @@ export async function generateMetadata({
 }
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
 
   return (
@@ -39,45 +40,23 @@ export default async function HomePage({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <Suspense
-                fallback={
-                  <div className="animate-pulse bg-muted rounded-lg h-64" />
-                }
-              >
-                <MenuFilters />
-              </Suspense>
-            </div>
+        <Suspense fallback={
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-muted rounded-lg aspect-square mb-4" />
+                <div className="bg-muted rounded h-4 mb-2" />
+                <div className="bg-muted rounded h-3 w-2/3 mb-2" />
+                <div className="bg-muted rounded h-3 w-1/3" />
+              </div>
+            ))}
           </div>
-
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <Suspense fallback={<DishGridSkeleton />}>
-              <DishGrid />
-            </Suspense>
-          </div>
-        </div>
+        }>
+          <MenuPageContent />
+        </Suspense>
       </main>
 
       <Footer />
-    </div>
-  );
-}
-
-function DishGridSkeleton() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      {Array.from({ length: 9 }).map((_, i) => (
-        <div key={i} className="animate-pulse">
-          <div className="bg-muted rounded-lg aspect-square mb-4" />
-          <div className="bg-muted rounded h-4 mb-2" />
-          <div className="bg-muted rounded h-3 w-2/3 mb-2" />
-          <div className="bg-muted rounded h-3 w-1/3" />
-        </div>
-      ))}
     </div>
   );
 }

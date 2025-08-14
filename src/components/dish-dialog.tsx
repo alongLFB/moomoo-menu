@@ -65,8 +65,8 @@ export function DishDialog({ dish, isOpen, onClose }: DishDialogProps) {
                 <div className="relative">
                   <div className="aspect-video relative overflow-hidden">
                     <Image
-                      src={dish.imageFull}
-                      alt={name}
+                      src={dish.imageFull || dish.imageThumbnail || 'https://via.placeholder.com/800x450/f3f4f6/9ca3af?text=Dish+Image'}
+                      alt={name || dish.nameEn || dish.nameZh || "Dish image"}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"

@@ -17,6 +17,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'moomoo-menu-assets.r2.dev',
       },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'photos.alonglfb.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'imgbed.alonglfb.com',
+      },
     ],
   },
   async headers() {

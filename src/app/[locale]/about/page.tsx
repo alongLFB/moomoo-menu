@@ -3,10 +3,11 @@ import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
 
   return {
@@ -16,10 +17,11 @@ export async function generateMetadata({
 }
 
 export default async function AboutPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
 
   return (

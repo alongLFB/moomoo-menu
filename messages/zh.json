@@ -69,11 +69,11 @@
     "social": "社交媒体"
   },
   "categories": {
-    "appetizers": "开胃菜",
+    "cold-dishes": "凉菜",
+    "hot-dishes": "热菜",
+    "noodles": "面食",
     "soups": "汤品",
-    "mains": "主菜",
-    "vegetarian": "素食",
-    "desserts": "甜品",
-    "beverages": "饮品"
+    "staples": "主食",
+    "snacks": "小食"
   }
 }

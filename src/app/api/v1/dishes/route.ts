@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { dishes, categories } from "@/lib/db/schema";
-import { asc, eq, like, and, or, gte, lte } from "drizzle-orm";
 
 export const runtime = "edge";
 
@@ -16,66 +13,129 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "20");
     const offset = (page - 1) * limit;
 
-    // Build where conditions
-    const conditions = [];
-
-    // Only show available dishes
-    conditions.push(eq(dishes.isAvailable, 1));
+    // Build SQL query with conditions
+    let sql = "SELECT * FROM dishes WHERE is_available = 1";
+    const params: any[] = [];
 
     // Search query
     if (q) {
-      conditions.push(
-        or(
-          like(dishes.nameZh, `%${q}%`),
-          like(dishes.nameEn, `%${q}%`),
-          like(dishes.descriptionZh, `%${q}%`),
-          like(dishes.descriptionEn, `%${q}%`)
-        )
-      );
+      sql += " AND (name_zh LIKE ? OR name_en LIKE ? OR description_zh LIKE ? OR description_en LIKE ?)";
+      const searchPattern = `%${q}%`;
+      params.push(searchPattern, searchPattern, searchPattern, searchPattern);
     }
 
     // Category filter
     if (cat && cat !== "all") {
-      conditions.push(eq(dishes.categoryId, parseInt(cat)));
+      sql += " AND category_id = ?";
+      params.push(parseInt(cat));
     }
 
     // Price range filters
     if (priceMin) {
-      conditions.push(gte(dishes.price, parseFloat(priceMin)));
+      sql += " AND price >= ?";
+      params.push(parseFloat(priceMin));
     }
     if (priceMax) {
-      conditions.push(lte(dishes.price, parseFloat(priceMax)));
+      sql += " AND price <= ?";
+      params.push(parseFloat(priceMax));
     }
 
-    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+    // Add ordering and pagination
+    sql += " ORDER BY sort_order ASC, id ASC LIMIT ? OFFSET ?";
+    params.push(limit, offset);
 
-    // Get dishes with category information
-    const result = await db
-      .select({
-        dish: dishes,
-        category: categories,
-      })
-      .from(dishes)
-      .leftJoin(categories, eq(dishes.categoryId, categories.id))
-      .where(whereClause)
-      .orderBy(asc(dishes.sortOrder), asc(dishes.id))
-      .limit(limit)
-      .offset(offset);
+    // Execute the main query
+    const response = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/d1/database/${process.env.CLOUDFLARE_DATABASE_ID}/query`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          sql: sql,
+          params: params
+        }),
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error(`D1 HTTP API error: ${response.status} ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    const dishesRaw = (result as any).result?.[0]?.results || [];
+
+    // Convert snake_case to camelCase for frontend compatibility
+    const dishes = dishesRaw.map((dish: any) => ({
+      id: dish.id,
+      categoryId: dish.category_id,
+      nameZh: dish.name_zh,
+      nameEn: dish.name_en,
+      descriptionZh: dish.description_zh,
+      descriptionEn: dish.description_en,
+      price: dish.price,
+      imageThumbnail: dish.image_thumbnail,
+      imageFull: dish.image_full,
+      ingredientsZh: dish.ingredients_zh,
+      ingredientsEn: dish.ingredients_en,
+      allergensZh: dish.allergens_zh,
+      allergensEn: dish.allergens_en,
+      tags: dish.tags,
+      isFeatured: dish.is_featured,
+      isAvailable: dish.is_available,
+      prepTime: dish.prep_time,
+      sortOrder: dish.sort_order,
+      createdAt: dish.created_at,
+    }));
 
     // Get total count for pagination
-    const totalResult = await db
-      .select({ count: dishes.id })
-      .from(dishes)
-      .where(whereClause);
+    let countSql = "SELECT COUNT(*) as count FROM dishes WHERE is_available = 1";
+    const countParams: any[] = [];
 
-    const total = totalResult.length;
+    // Apply same filters for count
+    if (q) {
+      countSql += " AND (name_zh LIKE ? OR name_en LIKE ? OR description_zh LIKE ? OR description_en LIKE ?)";
+      const searchPattern = `%${q}%`;
+      countParams.push(searchPattern, searchPattern, searchPattern, searchPattern);
+    }
+
+    if (cat && cat !== "all") {
+      countSql += " AND category_id = ?";
+      countParams.push(parseInt(cat));
+    }
+
+    if (priceMin) {
+      countSql += " AND price >= ?";
+      countParams.push(parseFloat(priceMin));
+    }
+    if (priceMax) {
+      countSql += " AND price <= ?";
+      countParams.push(parseFloat(priceMax));
+    }
+
+    const countResponse = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/d1/database/${process.env.CLOUDFLARE_DATABASE_ID}/query`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          sql: countSql,
+          params: countParams
+        }),
+      }
+    );
+
+    const countResult = await countResponse.json();
+    const total = (countResult as any).result?.[0]?.results?.[0]?.count || 0;
 
     return NextResponse.json({
       success: true,
-      data: result.map((row) => ({
-        ...row.dish,
-        category: row.category,
-      })),
+      data: dishes,
       pagination: {
         page,
         limit,
