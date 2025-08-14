@@ -1,0 +1,79 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "cancel": "取消",
+    "confirm": "确认",
+    "close": "关闭",
+    "search": "搜索",
+    "filter": "筛选",
+    "clear": "清空"
+  },
+  "header": {
+    "title": "牛牛牛餐厅",
+    "menu": "菜单",
+    "about": "关于我们",
+    "cart": "购物车",
+    "language": "语言",
+    "theme": "主题"
+  },
+  "menu": {
+    "title": "我们的菜单",
+    "searchPlaceholder": "搜索菜品...",
+    "categories": "分类",
+    "allCategories": "全部分类",
+    "priceRange": "价格区间",
+    "under50": "50 AED 以下",
+    "between50100": "50-100 AED",
+    "over100": "100 AED 以上",
+    "noResults": "没有找到相关菜品",
+    "featured": "招牌菜",
+    "spicy": "微辣",
+    "addToCart": "加入购物车",
+    "viewDetails": "查看详情"
+  },
+  "dish": {
+    "price": "价格",
+    "ingredients": "食材",
+    "allergens": "过敏源",
+    "prepTime": "制作时间",
+    "minutes": "分钟",
+    "quantity": "数量",
+    "addToCart": "加入购物车"
+  },
+  "cart": {
+    "title": "购物车",
+    "empty": "购物车为空",
+    "items": "商品",
+    "quantity": "数量",
+    "price": "价格",
+    "subtotal": "小计",
+    "total": "总计",
+    "remove": "删除",
+    "clearAll": "清空购物车",
+    "copyOrder": "复制订单摘要",
+    "orderCopied": "订单摘要已复制到剪贴板"
+  },
+  "about": {
+    "title": "关于牛牛牛餐厅",
+    "description": "位于阿布扎比的现代中餐厅，提供正宗美味的中式料理。",
+    "hours": "营业时间",
+    "lunch": "午餐时间：11:00-14:00",
+    "dinner": "晚餐时间：17:00-22:00",
+    "contact": "联系方式",
+    "manager": "姜老板",
+    "phone": "电话",
+    "address": "地址",
+    "fullAddress": "Electra Abdullah Bin Humaid Al Rumaithi St - Al Danah - Zone 1 - Abu Dhabi",
+    "social": "社交媒体"
+  },
+  "categories": {
+    "appetizers": "开胃菜",
+    "soups": "汤品",
+    "mains": "主菜",
+    "vegetarian": "素食",
+    "desserts": "甜品",
+    "beverages": "饮品"
+  }
+}

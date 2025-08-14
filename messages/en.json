@@ -1,0 +1,79 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear"
+  },
+  "header": {
+    "title": "Moo Moo Moo Restaurant",
+    "menu": "Menu",
+    "about": "About",
+    "cart": "Cart",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "searchPlaceholder": "Search dishes...",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "priceRange": "Price Range",
+    "under50": "Under 50 AED",
+    "between50100": "50-100 AED",
+    "over100": "Over 100 AED",
+    "noResults": "No dishes found",
+    "featured": "Signature",
+    "spicy": "Spicy",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details"
+  },
+  "dish": {
+    "price": "Price",
+    "ingredients": "Ingredients",
+    "allergens": "Allergens",
+    "prepTime": "Prep Time",
+    "minutes": "minutes",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "items": "Items",
+    "quantity": "Quantity",
+    "price": "Price",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "remove": "Remove",
+    "clearAll": "Clear Cart",
+    "copyOrder": "Copy Order Summary",
+    "orderCopied": "Order summary copied to clipboard"
+  },
+  "about": {
+    "title": "About Moo Moo Moo Restaurant",
+    "description": "A modern Chinese restaurant in Abu Dhabi, serving authentic and delicious Chinese cuisine.",
+    "hours": "Opening Hours",
+    "lunch": "Lunch: 11:00-14:00",
+    "dinner": "Dinner: 17:00-22:00",
+    "contact": "Contact",
+    "manager": "Manager Jiang",
+    "phone": "Phone",
+    "address": "Address",
+    "fullAddress": "Electra Abdullah Bin Humaid Al Rumaithi St - Al Danah - Zone 1 - Abu Dhabi",
+    "social": "Social Media"
+  },
+  "categories": {
+    "appetizers": "Appetizers",
+    "soups": "Soups",
+    "mains": "Main Courses",
+    "vegetarian": "Vegetarian",
+    "desserts": "Desserts",
+    "beverages": "Beverages"
+  }
+}
