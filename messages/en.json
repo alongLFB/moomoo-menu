@@ -59,14 +59,32 @@
     "title": "About Moo Moo Moo Restaurant",
     "description": "A modern Chinese restaurant in Abu Dhabi, serving authentic and delicious Chinese cuisine.",
     "hours": "Opening Hours",
-    "lunch": "Lunch: 11:00-14:00",
-    "dinner": "Dinner: 17:00-22:00",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
     "contact": "Contact",
     "manager": "Manager Jiang",
     "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "restaurantManager": "Restaurant Manager",
     "address": "Address",
     "fullAddress": "Electra Abdullah Bin Humaid Al Rumaithi St - Al Danah - Zone 1 - Abu Dhabi",
-    "social": "Social Media"
+    "social": "Social Media",
+    "viewOnMaps": "View on Google Maps",
+    "whyChoose": "Why Choose Moo Moo Moo?",
+    "features": {
+      "authentic": {
+        "title": "Authentic Cuisine",
+        "description": "Traditional Chinese flavors prepared with authentic recipes and techniques."
+      },
+      "fresh": {
+        "title": "Fresh Ingredients",
+        "description": "We source the finest and freshest ingredients daily to ensure quality."
+      },
+      "expert": {
+        "title": "Expert Chefs",
+        "description": "Our experienced chefs bring years of culinary expertise to every dish."
+      }
+    }
   },
   "categories": {
     "cold-dishes": "Cold Dishes",

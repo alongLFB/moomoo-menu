@@ -75,7 +75,7 @@ export default async function AboutPage({
                 <div>
                   <div className="font-medium mb-1">{t("about.manager")}</div>
                   <div className="text-muted-foreground">
-                    Restaurant Manager
+                    {t("about.restaurantManager")}
                   </div>
                 </div>
                 <div>
@@ -88,7 +88,7 @@ export default async function AboutPage({
                   </a>
                 </div>
                 <div>
-                  <div className="font-medium mb-1">WhatsApp</div>
+                  <div className="font-medium mb-1">{t("about.whatsapp")}</div>
                   <a
                     href="https://wa.me/971056496686"
                     target="_blank"
@@ -113,13 +113,13 @@ export default async function AboutPage({
                 </p>
                 <div className="mt-4">
                   <a
-                    href="https://maps.google.com/?q=Electra+Abdullah+Bin+Humaid+Al+Rumaithi+St+Al+Danah+Zone+1+Abu+Dhabi"
+                    href="https://maps.app.goo.gl/RPzMRD8PJ8kqfxKo6"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
                   >
                     <span className="mr-2">🗺️</span>
-                    View on Google Maps
+                    {t("about.viewOnMaps")}
                   </a>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default async function AboutPage({
           {/* Features */}
           <div className="mt-16">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Why Choose Moo Moo Moo?
+              {t("about.whyChoose")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
@@ -137,11 +137,10 @@ export default async function AboutPage({
                   <span className="text-3xl">🥢</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">
-                  Authentic Cuisine
+                  {t("about.features.authentic.title")}
                 </h3>
                 <p className="text-muted-foreground">
-                  Traditional Chinese flavors prepared with authentic recipes
-                  and techniques.
+                  {t("about.features.authentic.description")}
                 </p>
               </div>
 
@@ -150,11 +149,10 @@ export default async function AboutPage({
                   <span className="text-3xl">🍃</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">
-                  Fresh Ingredients
+                  {t("about.features.fresh.title")}
                 </h3>
                 <p className="text-muted-foreground">
-                  We source the finest and freshest ingredients daily to ensure
-                  quality.
+                  {t("about.features.fresh.description")}
                 </p>
               </div>
 
@@ -162,10 +160,11 @@ export default async function AboutPage({
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl">👨‍🍳</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Expert Chefs</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  {t("about.features.expert.title")}
+                </h3>
                 <p className="text-muted-foreground">
-                  Our experienced chefs bring years of culinary expertise to
-                  every dish.
+                  {t("about.features.expert.description")}
                 </p>
               </div>
             </div>

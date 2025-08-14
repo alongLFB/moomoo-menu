@@ -35,6 +35,15 @@ export function Footer() {
               <div className="text-sm">
                 {t("about.address")}:<br />
                 {t("about.fullAddress")}
+                <a
+                    href="https://maps.app.goo.gl/RPzMRD8PJ8kqfxKo6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                  >
+                    <span className="mr-2">🗺️</span>
+                    {t("about.viewOnMaps")}
+                  </a>
               </div>
             </div>
           </div>
@@ -43,8 +52,14 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">{t("about.hours")}</h3>
             <div className="space-y-2 text-muted-foreground">
-              <div>{t("about.lunch")}</div>
-              <div>{t("about.dinner")}</div>
+              <div>
+                <span className="font-medium">{t("about.lunch")}</span>
+                <span className="text-muted-foreground">11:00 - 14:00</span>
+              </div>
+              <div>
+                <span className="font-medium">{t("about.dinner")}</span>
+                <span className="text-muted-foreground">17:00 - 22:00</span>
+              </div>
             </div>
           </div>
         </div>

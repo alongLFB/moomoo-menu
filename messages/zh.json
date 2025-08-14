@@ -11,7 +11,7 @@
     "clear": "清空"
   },
   "header": {
-    "title": "牛牛牛餐厅",
+    "title": "Moo Moo Moo餐厅",
     "menu": "菜单",
     "about": "关于我们",
     "cart": "购物车",
@@ -56,17 +56,35 @@
     "orderCopied": "订单摘要已复制到剪贴板"
   },
   "about": {
-    "title": "关于牛牛牛餐厅",
+    "title": "关于Moo Moo Moo餐厅",
     "description": "位于阿布扎比的现代中餐厅，提供正宗美味的中式料理。",
     "hours": "营业时间",
-    "lunch": "午餐时间：11:00-14:00",
-    "dinner": "晚餐时间：17:00-22:00",
+    "lunch": "午餐",
+    "dinner": "晚餐",
     "contact": "联系方式",
     "manager": "姜老板",
     "phone": "电话",
+    "whatsapp": "微信",
+    "restaurantManager": "餐厅经理",
     "address": "地址",
     "fullAddress": "Electra Abdullah Bin Humaid Al Rumaithi St - Al Danah - Zone 1 - Abu Dhabi",
-    "social": "社交媒体"
+    "social": "社交媒体",
+    "viewOnMaps": "在谷歌地图中查看",
+    "whyChoose": "为什么选择Moo Moo Moo？",
+    "features": {
+      "authentic": {
+        "title": "正宗美食",
+        "description": "传统中式风味，采用正宗食谱和工艺制作。"
+      },
+      "fresh": {
+        "title": "新鲜食材",
+        "description": "我们每日采购最优质新鲜的食材，确保品质。"
+      },
+      "expert": {
+        "title": "专业厨师",
+        "description": "经验丰富的厨师团队，为每道菜品带来多年的烹饪经验。"
+      }
+    }
   },
   "categories": {
     "cold-dishes": "凉菜",
