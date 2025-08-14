@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { SEOStructuredData } from "@/components/seo-structured-data";
 
 export async function generateMetadata({
   params,
@@ -9,11 +10,36 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale });
 
+  const isZh = locale === "zh";
+  
   return {
-    title: `${t("about.title")} | ${t("header.title")}`,
-    description: t("about.description"),
+    title: isZh 
+      ? `关于我们 | 牛牛牛餐厅 - 阿布扎比正宗中餐厅`
+      : `About Us | Moo Moo Moo Restaurant - Authentic Chinese Restaurant in Abu Dhabi`,
+    description: isZh
+      ? "了解牛牛牛餐厅 - 位于阿布扎比Al Danah区的正宗中餐厅。营业时间、联系方式、地址信息。提供川菜、粤菜、北京菜等传统中式料理。电话：+971-056-496-6886"
+      : "Learn about Moo Moo Moo Restaurant - Authentic Chinese restaurant in Abu Dhabi Al Danah. Hours, contact info, address. Serving traditional Sichuan, Cantonese, and Beijing cuisine. Phone: +971-056-496-6886",
+    keywords: isZh 
+      ? "牛牛牛餐厅, 阿布扎比中餐厅, Al Danah中餐, 餐厅信息, 营业时间, 联系方式, 川菜餐厅, 粤菜餐厅, 正宗中餐"
+      : "Moo Moo Moo Restaurant, Abu Dhabi Chinese restaurant, Al Danah Chinese food, restaurant info, opening hours, contact, Sichuan restaurant, Cantonese restaurant, authentic Chinese",
+    openGraph: {
+      title: isZh 
+        ? "关于牛牛牛餐厅 - 阿布扎比正宗中餐厅"
+        : "About Moo Moo Moo Restaurant - Authentic Chinese Restaurant in Abu Dhabi",
+      description: isZh
+        ? "了解牛牛牛餐厅的历史、营业时间、联系方式。位于阿布扎比Al Danah区，提供正宗川菜、粤菜、北京菜。"
+        : "Learn about Moo Moo Moo Restaurant's history, hours, and contact info. Located in Abu Dhabi Al Danah, serving authentic Sichuan, Cantonese, and Beijing cuisine.",
+      type: "website",
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+    },
+    alternates: {
+      canonical: `https://menuformoo.alonglfb.com/${locale}/about`,
+      languages: {
+        "zh-CN": "https://menuformoo.alonglfb.com/zh/about",
+        "en-US": "https://menuformoo.alonglfb.com/en/about",
+      },
+    },
   };
 }
 
@@ -28,6 +54,7 @@ export default async function AboutPage({
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOStructuredData locale={locale} page="about" />
       <NavBar />
 
       <main className="container py-12">

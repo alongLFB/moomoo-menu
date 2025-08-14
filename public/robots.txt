@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# 允许搜索引擎抓取所有页面
+Allow: /zh/
+Allow: /en/
+Allow: /zh/about
+Allow: /en/about
+Allow: /api/v1/
+
+# 禁止抓取这些路径
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/internal/
+
+# 站点地图
+Sitemap: https://menuformoo.alonglfb.com/sitemap.xml
+
+# 爬取延迟（可选）
+Crawl-delay: 1

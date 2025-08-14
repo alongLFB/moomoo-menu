@@ -1,0 +1,134 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://menuformoo.alonglfb.com/#organization",
+      "name": "Moo Moo Moo Restaurant",
+      "alternateName": "牛牛牛餐厅",
+      "url": "https://menuformoo.alonglfb.com",
+      "sameAs": [
+        "https://wa.me/971056496686"
+      ],
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://menuformoo.alonglfb.com/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+971-056-496-6886",
+        "contactType": "customer service",
+        "availableLanguage": ["zh", "en", "ar"]
+      }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://menuformoo.alonglfb.com/#restaurant",
+      "name": "Moo Moo Moo Restaurant",
+      "alternateName": "牛牛牛餐厅",
+      "isPartOf": {
+        "@id": "https://menuformoo.alonglfb.com/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Electra Abdullah Bin Humaid Al Rumaithi St",
+        "addressLocality": "Al Danah",
+        "addressRegion": "Abu Dhabi",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 24.4851,
+        "longitude": 54.3525
+      },
+      "url": "https://menuformoo.alonglfb.com",
+      "telephone": "+971-056-496-6886",
+      "servesCuisine": [
+        "Chinese",
+        "Sichuan",
+        "Cantonese", 
+        "Beijing",
+        "Asian"
+      ],
+      "priceRange": "$$",
+      "acceptsReservations": true,
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday", 
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "11:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday", 
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "17:00",
+          "closes": "22:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "150",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "paymentAccepted": [
+        "Cash",
+        "Credit Card",
+        "Debit Card"
+      ],
+      "currenciesAccepted": "AED",
+      "hasMenu": "https://menuformoo.alonglfb.com",
+      "image": [
+        "https://menuformoo.alonglfb.com/images/restaurant-exterior.jpg",
+        "https://menuformoo.alonglfb.com/images/restaurant-interior.jpg",
+        "https://menuformoo.alonglfb.com/images/food-1.jpg",
+        "https://menuformoo.alonglfb.com/images/food-2.jpg"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://menuformoo.alonglfb.com/#website",
+      "url": "https://menuformoo.alonglfb.com",
+      "name": "Moo Moo Moo Restaurant",
+      "description": "Authentic Chinese restaurant in Abu Dhabi Al Danah, serving traditional Sichuan, Cantonese, and Beijing cuisine.",
+      "publisher": {
+        "@id": "https://menuformoo.alonglfb.com/#organization"
+      },
+      "inLanguage": [
+        "zh-CN",
+        "en-US"
+      ],
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://menuformoo.alonglfb.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ]
+    }
+  ]
+}

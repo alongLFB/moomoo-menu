@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 中文首页 -->
+  <url>
+    <loc>https://menuformoo.alonglfb.com/zh</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://menuformoo.alonglfb.com/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://menuformoo.alonglfb.com/zh"/>
+  </url>
+  
+  <!-- 英文首页 -->
+  <url>
+    <loc>https://menuformoo.alonglfb.com/en</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://menuformoo.alonglfb.com/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://menuformoo.alonglfb.com/zh"/>
+  </url>
+  
+  <!-- 中文关于页面 -->
+  <url>
+    <loc>https://menuformoo.alonglfb.com/zh/about</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://menuformoo.alonglfb.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://menuformoo.alonglfb.com/zh/about"/>
+  </url>
+  
+  <!-- 英文关于页面 -->
+  <url>
+    <loc>https://menuformoo.alonglfb.com/en/about</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://menuformoo.alonglfb.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://menuformoo.alonglfb.com/zh/about"/>
+  </url>
+  
+  <!-- API端点（可选） -->
+  <url>
+    <loc>https://menuformoo.alonglfb.com/api/v1/categories</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://menuformoo.alonglfb.com/api/v1/dishes</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset>
