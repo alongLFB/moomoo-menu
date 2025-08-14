@@ -18,17 +18,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("moomoo-theme") as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+    let initialTheme: Theme = "light";
+    
+    if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
+      initialTheme = savedTheme;
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
+      initialTheme = "dark";
+    }
+    
+    setTheme(initialTheme);
+    
+    // Apply theme immediately to prevent flash
+    const htmlElement = document.documentElement;
+    if (initialTheme === "dark") {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
     }
   }, []);
 
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("moomoo-theme", theme);
-      document.documentElement.classList.toggle("dark", theme === "dark");
+      // Update both documentElement and html element to ensure theme applies
+      const htmlElement = document.documentElement;
+      if (theme === "dark") {
+        htmlElement.classList.add("dark");
+      } else {
+        htmlElement.classList.remove("dark");
+      }
     }
   }, [theme, mounted]);
 
