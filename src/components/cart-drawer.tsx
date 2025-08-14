@@ -167,7 +167,6 @@ function CartItemComponent({
   onUpdateQuantity,
   onRemove,
 }: CartItemComponentProps) {
-  const t = useTranslations();
   const name = locale === "zh" ? item.nameZh : item.nameEn;
 
   return (

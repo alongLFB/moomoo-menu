@@ -3,6 +3,7 @@ import * as schema from "./schema";
 
 // Type for D1 database
 declare global {
+  // eslint-disable-next-line no-var
   var DB: D1Database;
 }
 
@@ -86,8 +87,8 @@ function initializeDatabase() {
     // Fallback to mock database for development without credentials
     console.warn("⚠️  No D1 credentials found, using mock database");
     const mockDB = {
-      prepare: (query: string) => ({
-        bind: (...params: any[]) => ({
+      prepare: (_query: string) => ({
+        bind: (..._params: any[]) => ({
           all: () => Promise.resolve([]),
           first: () => Promise.resolve(null),
           run: () => Promise.resolve({ success: true, meta: {} }),
